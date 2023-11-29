@@ -1,0 +1,13 @@
+</php
+date_default_timezone_set('asia/kolkata');
+if(! isset($_COOKIE['visited']))
+{
+echo "new visit";
+setcookie('visited',date('L jsm y H:i:s a'),time()+86400);
+}
+else
+{
+ echo "last visited on".$_COOKIE['visited']
+setcookie('visited',date('L jsm y H;i:s a'));
+}
+?>
