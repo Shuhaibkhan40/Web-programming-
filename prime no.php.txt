@@ -1,0 +1,13 @@
+<?php
+$n=(int)readlines("enter a n")
+for($i=2;$1<$N;$I++)
+{
+ $rem=$N%$I;
+ IF($REM==O)
+BREAK;
+}
+IF($I>=$N)
+echo"prime number";
+else
+echo"not a prime";
+?>
