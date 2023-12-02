@@ -1,0 +1,146 @@
+<html>
+  <head>
+   <title>FORM</title>
+   <style>
+      div{
+                 width:50%;
+                  padding:20px;  
+                  background-color:rgba(204,255,255);
+                  border:2px solid red;
+              }
+   legend{ 
+                     font-size:20px;
+                     color:white;
+                     background-color:red;
+                  }
+  fieldset{
+                     background-color:rgba(0,0,0 ,0.8);
+                     border-radus:10px;
+                     width=70%; 
+                     border:1px solid red; 
+                  }
+ input[type=text]{
+                                         border:none;
+                                       
+                                         
+                                         width:60%;
+                                         padding:5px;   
+                                     }
+
+      input[type=submit],input[type=reset]{ 
+                                                    
+                                                     border:none;
+                                                      background-color:red;
+                                                        padding:8px;  
+                                                   font-size:10px;
+                                                    color:white; 
+                                                    border-radius:15px;
+                                                  }   
+     td{
+             font-size:10px;
+             color:white;
+           }
+     
+</style>
+
+  </head>
+  
+  <body>
+  <div>
+  <form method="post" action=" ">
+  <fieldset>
+  <legend>REGISTRATION FORM</legend>
+  <table>
+  <tr>
+  <td>NAME :</td>
+  <td><input type="text" name="name"></td>
+  </tr> 
+  <td>MOBILE NO :</td>
+  <td><input type="text" name="no"></td>
+  </tr>
+   <tr>
+  <td>ADDRESS :</td>
+  <td><textarea rows="5" cols="25" name="tx"></textarea></td>
+  </tr> 
+  <tr>
+  <td>GENDER :</td>
+  <td colspan="2"><input type="radio" name="gen" value="male">Male
+                 <input type="radio" name="gen" value="female">Female
+  </td>
+  </tr>
+  <tr>
+  <td>LANGUAGE :</td>
+  <td colspan="2"><input type="checkbox" name="lan[]" value="Telugu">Telugu  
+                  <input type="checkbox" name="lan[]" value="English">English
+                  <input type="checkbox" name="lan[]" value="Urdu">Urdu
+  </td>
+  </tr>
+  <tr>
+  <td>STATE :</td>
+  <td>
+  <select name="st">
+      <option>---Select---</option>
+      <option value="AP">AP</option>
+      <option value="KA">KA</option>
+      <option value="TN">TN</option> 
+      <option value="KL">KL</option>      
+      </select> 
+  </td> 
+  </tr>
+  <tr>
+  <td>DOB :</td>
+  <td><input type="date" name="dob"></td>
+  </tr>
+  <tr>
+  <td>UPLOAD PIC :</td>
+  <td><input type="file" name="pic"></td>
+  </tr>
+  <tr>
+  <td ><input type="submit" name="sub" value="submit"></td>
+  <td ><input type="reset" name="clr" value="reset"></td>
+  </tr>
+  </table>
+  </fieldset>
+  </form>
+  </div>
+</body>
+</html> 
+        <?php 
+             if(isset($_POST["sub"]))
+             {
+              $n=$_POST["name"];
+              $m=$_POST["no"];
+              echo "NAME = $n <br>";
+              echo "MOBILE NO = $m <br>";
+              $ad=$_POST["tx"];
+              echo "address= $ad <br>";
+              $s=$_POST["st"];
+              echo"state =$s<br>"; 
+              $gen=$_POST["gen"];
+              echo"gender=$gen <br>"; 
+              $dob=$_POST['dob'];
+              echo "DOB = $dob<br>";
+              $lan=$_POST["lan"];
+              foreach($lan  as $l)              
+              echo "language=$l <br>";
+             }
+       $con = new mysqli('localhost','root','','sk'); 
+       if($con)
+         echo"successful";
+       else
+          echo"unsuccessful";
+     
+       $q1="insert into form1 values('$n',
+                                     '$m',
+                                     '$gen',
+                                     '$ad',
+                                     '$dob');";
+
+
+        
+    if($con->query($q1))
+	echo"Row inserted";
+   else
+	echo"error2";
+     
+?>

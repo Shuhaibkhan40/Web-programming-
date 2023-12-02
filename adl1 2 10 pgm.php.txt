@@ -1,0 +1,86 @@
+<html>
+<head>
+<style>
+</style>
+<title>form</title> 
+</head>
+  <body>
+  <div>
+  <form method="post" action=" ">
+  <fieldset>
+  <legend>REGISTRATION FORM</legend>
+  <table>
+  <tr>
+  <td>NAME :</td>
+  <td><input type="text" name="name"></td>
+  </tr> 
+  <td>ADDRS L1:</td>
+  <td><textarea rows="5" cols="25" name="ad1"></textarea></td>
+  </tr> 
+  <td>ADDRS L2:</td>
+  <td><textarea rows="5" cols="25" name="ad2"></textarea></td>
+  </tr> 
+  <td>EMAIL :</td>
+  <td><input type="text" name="email"></td>
+  </tr>
+  <tr>
+  <td ><input type="submit" name="in" value="insert"></td>
+  </tr>
+  <td>Enter_Name_to_Search:</td>
+  <td><input type="text" name="search"></td>
+  </tr>
+  <tr>
+  <td ><input type="submit" name="sub" value="search"></td>
+  </tr> 
+</table>
+  </fieldset>
+  </form>
+  </div>
+</body>
+</html> 
+      <?php 
+            $con = new mysqli('localhost','root','','afreed'); 
+       if($con)
+         echo"successful <br>";
+       else
+          echo"unsuccessful";
+           if(isset($_POST["in"]))
+             {
+              $n=$_POST["name"];
+              $ad1=$_POST["ad1"];
+              $ad2=$_POST["ad2"];
+              $e=$_POST["email"];
+              
+             
+          
+       $q1="insert into affu1 values('$n',
+                                     '$ad1',
+                                     '$ad2',
+                                     '$e');";
+       
+	
+       if($con->query($q1))
+	echo"Row inserted <br>";
+   else
+	echo"error2";
+    }
+
+        if(isset($_POST["sub"]))
+        {
+           $se=$_POST["search"];
+           $q2="select * from affu1 where name='$se';";
+          
+          $result=$con->query($q2);
+      if($result->num_rows>0)
+      {
+        while($row=mysqli_fetch_assoc($result))
+        {
+          echo "ADD1=".$row['address1']."<br>".
+               "ADD2=".$row['address2']."<br>".
+               "name=".$row['name'];
+        }
+      }
+     else
+        echo"no records";
+    }
+  ?>
